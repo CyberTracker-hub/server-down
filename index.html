@@ -182,6 +182,15 @@ footer{border-top:1px solid var(--edge);padding:20px 0 40px;font-size:.82rem;col
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.mcard{border:1px solid var(--edge);background:var(--graphite);padding:8px;display:flex;flex-direction:column;gap:8px}
+.mcard canvas{width:100%;height:auto;display:block;background:var(--void)}
+.mcard .who{font-family:var(--mono);font-size:.72rem;display:flex;justify-content:space-between;gap:8px}
+.mcard .rank{color:var(--amber);font-weight:700}
+.rules{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;max-width:65ch}
+#wBtn{white-space:nowrap;flex:none}
+header{overflow:hidden}
+@media (max-width:560px){.brand{font-size:1rem}.rail{gap:8px;padding:8px 12px}nav a{padding:8px 7px;font-size:.72rem}#wBtn{padding:7px 8px;font-size:.66rem}}
 </style>
 </head>
 <body>
@@ -189,11 +198,11 @@ footer{border-top:1px solid var(--edge);padding:20px 0 40px;font-size:.82rem;col
   <div class="rail">
     <a class="brand" href="#home"><i></i>SERVER DOWN</a>
     <nav id="nav" aria-label="Sections"></nav>
+    <button class="btn sm green" id="wBtn" hidden>Connect wallet</button>
   </div>
 </header>
 
 <main class="wrap">
-
 <!-- HOME -->
 <section class="view" id="v-home">
   <div class="stack" style="gap:28px">
@@ -203,92 +212,28 @@ footer{border-top:1px solid var(--edge);padding:20px 0 40px;font-size:.82rem;col
         <div>
           <div class="big500"><small>ERROR</small>500</div>
           <h1>The internet is down.<br><span style="color:var(--green)">The meme lives on.</span></h1>
-          <p style="margin-top:12px">A small, angry server robot called ERROR-01 is trying to keep everything online. It is not going well.</p>
+          <p style="margin-top:12px">ERROR-01 is a small, angry server robot trying to keep everything online. Help it defend the server, or make a meme about how badly it is going.</p>
           <div class="row" style="margin-top:18px">
-            <a class="btn red" href="#terminal">Enter system</a>
-            <a class="btn" href="#characters">Explore the universe</a>
+            <a class="btn red" href="#game">Play the game</a>
+            <a class="btn" href="#glitch-lab">Make a meme</a>
           </div>
         </div>
         <div class="herobot" id="heroBot"></div>
       </div>
     </div>
-    <div class="sim">SATIRE. SERVER DOWN is fiction. Every outage, incident and system message on this site is made up. We do not cause, track or report real cyber incidents.</div>
     <div class="tiles" id="tiles"></div>
-    <div class="stack">
-      <div class="eyebrow">Roadmap · 4 weeks</div>
-      <h2>What gets built, and what might</h2>
-      <p class="dim"><span class="tag c">Committed</span>is being built. <span class="tag p">Proposed</span>is planned but can change. <span class="tag i">Idea</span>is only an idea.</p>
-      <div class="road" id="road"></div>
-    </div>
-  </div>
-</section>
-
-<!-- DASHBOARD -->
-<section class="view" id="v-dashboard">
-  <div class="stack">
-    <div class="eyebrow">Global system dashboard</div>
-    <h2>Everything is fine. Nothing is fine.</h2>
-    <div class="sim">SIMULATED DATA. Every number, node, map point and incident below is generated in your browser for fun. No real network, company or outage is shown. No real data sources are connected.</div>
-    <div class="kpis">
-      <div class="panel kpi"><span class="eyebrow">CPU</span><b id="kCpu">0%</b><canvas id="cCpu" height="50"></canvas></div>
-      <div class="panel kpi"><span class="eyebrow">Memory</span><b id="kMem">0%</b><canvas id="cMem" height="50"></canvas></div>
-      <div class="panel kpi"><span class="eyebrow">Memes/s</span><b id="kNet">0</b><canvas id="cNet" height="50"></canvas></div>
-    </div>
-    <div class="dash">
-      <div class="panel stack">
-        <div class="row" style="justify-content:space-between"><h3>Fictional network map</h3><span class="pill warn" id="sysState">DEGRADED</span></div>
-        <canvas id="map" aria-label="Simulated world map with eight fictional nodes"></canvas>
-        <div class="rack" id="nodes"></div>
-      </div>
-      <div class="stack">
-        <div class="panel stack"><h3>Rack 7</h3><div class="rack" id="rack"></div></div>
-        <div class="panel stack"><h3>Error stream</h3><div class="log" id="dlog" aria-live="off"></div></div>
-      </div>
-    </div>
     <div class="panel stack">
-      <h3>Incident history (fictional)</h3>
-      <div class="scroll"><table><thead><tr><th>ID</th><th>Incident</th><th>Root cause</th><th>Status</th></tr></thead><tbody id="incidents"></tbody></table></div>
+      <div class="eyebrow">Two contests</div>
+      <h3>How it works</h3>
+      <ul class="rules">
+        <li>There are two leaderboards: high scores in Server Survival, and memes made in the Glitch Lab.</li>
+        <li>You need a Solana wallet to post a score, enter a meme or vote. Signing in only signs a text message. It never moves funds and costs nothing.</li>
+        <li>One best score per wallet and difficulty. One vote per wallet per meme. You cannot vote for your own meme.</li>
+        <li>The top 10 on each board are reviewed by hand before any prize is given. Faked scores, vote farming and offensive memes are removed.</li>
+        <li>Prizes, dates and full rules are announced on X before each round. Entering is free.</li>
+      </ul>
     </div>
-  </div>
-</section>
-
-<!-- CHARACTERS -->
-<section class="view" id="v-characters">
-  <div class="stack">
-    <div class="eyebrow">Character collection</div>
-    <h2>The Error Protocol</h2>
-    <p>Twenty machines, bugs and daemons. All free digital collectibles. Rarity is a game label and says nothing about money or value.</p>
-    <div class="panel stack">
-      <div class="row" style="justify-content:space-between"><span class="mono" id="progText"></span><span class="mono dim" id="unlockText"></span></div>
-      <div class="bar"><i id="progBar" style="width:0"></i></div>
-    </div>
-    <div class="row">
-      <label style="flex:1 1 180px">Search<input type="search" id="q" placeholder="name, ability, quote" autocomplete="off"></label>
-      <label>Rarity<select id="fRar"></select></label>
-      <label>Type<select id="fType"></select></label>
-      <label>Sort<select id="fSort"><option value="num">Number</option><option value="name">Name</option><option value="rar">Rarity</option></select></label>
-    </div>
-    <div class="row">
-      <button class="btn sm" id="bGrid" aria-pressed="true">Cards</button>
-      <button class="btn sm" id="bList" aria-pressed="false">List</button>
-      <button class="btn sm" id="bFav" aria-pressed="false">★ Favorites only</button>
-      <span class="mono dim" id="count"></span>
-    </div>
-    <div class="cards" id="cards"></div>
-  </div>
-</section>
-
-<!-- TERMINAL -->
-<section class="view" id="v-terminal">
-  <div class="stack">
-    <div class="eyebrow">The terminal</div>
-    <h2>Type things. Break things.</h2>
-    <p>Start with <code class="mono" style="color:var(--green)">help</code>. Not every command is listed.</p>
-    <div class="term">
-      <div class="term-out" id="tout" role="log" aria-live="polite"></div>
-      <form id="tform"><span aria-hidden="true">error-01@rack7:~$&nbsp;</span><input type="text" id="tin" aria-label="Terminal command" autocomplete="off" autocapitalize="off" spellcheck="false"></form>
-    </div>
-    <div class="chips" id="tchips"></div>
+    <div class="sim">SATIRE. SERVER DOWN is fiction. Every outage and system message here is made up. There is no $DOWN token. Any token or address claiming to be $DOWN is fake.</div>
   </div>
 </section>
 
@@ -316,6 +261,12 @@ footer{border-top:1px solid var(--edge);padding:20px 0 40px;font-size:.82rem;col
           <button class="btn sm" id="mGl" aria-pressed="true">Glitch on</button>
           <button class="btn sm" id="mRe">Re-roll glitch</button>
         </div>
+        <div class="panel stack" id="mEnter" hidden>
+          <div class="eyebrow">Meme contest</div>
+          <label>Name on leaderboard<input type="text" id="mName" maxlength="16" placeholder="3-16 letters or numbers" autocomplete="off"></label>
+          <button class="btn green" id="mSubmit">Enter this meme</button>
+          <p class="dim" style="font-size:.84rem">Your meme is shown publicly with your name and wallet address. Up to 5 entries per day. See the <a href="#leaderboard">leaderboard</a>.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -341,7 +292,7 @@ footer{border-top:1px solid var(--edge);padding:20px 0 40px;font-size:.82rem;col
           <label>Name on leaderboard<input type="text" id="lbName" maxlength="16" pattern="[A-Za-z0-9_\-]{3,16}" placeholder="3-16 letters or numbers" autocomplete="off"></label>
           <button class="btn green" id="lbSend" type="submit">Submit score</button>
         </form>
-        <p class="mono" id="lbHint" hidden style="color:var(--amber)">Connect a wallet under the game to submit this score.</p>
+        <p class="mono" id="lbHint" hidden style="color:var(--amber)">Connect a wallet at the top of the page to submit this score.</p>
         <button class="btn red" id="gStart">Start game</button>
       </div>
     </div>
@@ -350,68 +301,36 @@ footer{border-top:1px solid var(--edge);padding:20px 0 40px;font-size:.82rem;col
       <button class="btn" id="a2" disabled>2 · Patch +HP</button>
       <button class="btn" id="a3" disabled>3 · Rate limit</button>
     </div>
+    <p class="dim">Sign in with a wallet (top of the page) to post your score. See the <a href="#leaderboard">leaderboard</a>.</p>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="view" id="v-leaderboard">
+  <div class="stack">
+    <div class="eyebrow">Leaderboard</div>
+    <h2>Two boards. Ten places each.</h2>
+    <p class="dim" id="lbOff" hidden>The leaderboards are not connected on this copy of the site.</p>
     <div class="panel stack">
-      <div class="row" style="justify-content:space-between"><h3>Leaderboard</h3><span class="mono dim" id="lbState"></span></div>
-      <div class="row" id="wRow" hidden><span class="mono dim" id="wState">Not signed in</span><button class="btn sm green" id="wBtn">Connect wallet</button></div>
+      <div class="row" style="justify-content:space-between"><h3>Server Survival</h3>
+        <label>Difficulty<select id="lbDiff"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="chaos">Chaos</option></select></label></div>
       <div class="scroll"><table><thead><tr><th>#</th><th>Name</th><th>Wallet</th><th>Score</th><th>Server</th></tr></thead><tbody id="lbRows"></tbody></table></div>
-      <p class="dim" style="font-size:.84rem">To post a score you sign in with a Solana wallet. Signing in asks your wallet to sign a text message. It cannot move funds or approve a transaction, and it costs nothing. Your wallet address is shown on the leaderboard, with one best score per wallet and difficulty. Scores are checked for plausibility, not proven.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ARCHIVES -->
-<section class="view" id="v-archives">
-  <div class="stack">
-    <div class="eyebrow">The archives</div>
-    <h2>How it all went down</h2>
-    <div class="chap">
-      <div class="chap-list" id="chList"></div>
-      <div class="panel"><article id="chBody"></article></div>
-    </div>
-  </div>
-</section>
-
-<!-- TOKEN -->
-<section class="view" id="v-token">
-  <div class="stack">
-    <div class="eyebrow">Token dashboard</div>
-    <h2>$DOWN is not launched</h2>
-    <div class="sim" style="border-color:var(--red);color:var(--red);background:rgba(240,68,68,.08)">NO CONTRACT ADDRESS EXISTS. Any token, address or link claiming to be $DOWN right now is fake. If a token launches, the verified address will be published on this page first.</div>
-    <div class="panel stack">
-      <h3>Status</h3>
-      <div class="scroll"><table><tbody id="tokStatus"></tbody></table></div>
-      <p class="dim" style="font-size:.86rem">This page shows no price, volume, holder count or trades, because none exist. If they are added later, each number will name its data source and the time it was fetched.</p>
+      <div class="row"><span class="mono dim" id="lbState"></span><a class="btn sm" href="#game">Play</a></div>
     </div>
     <div class="panel stack">
-      <h3>Proposed tokenomics (draft)</h3>
-      <p>A starting point for discussion, built on a 1,000,000,000 supply. Nothing here is final and nothing is a promise.</p>
-      <div class="alloc" id="alloc" role="img" aria-label="Proposed allocation bar"></div>
-      <div class="scroll"><table><thead><tr><th>Share</th><th>Bucket</th><th>Rules</th></tr></thead><tbody id="allocRows"></tbody></table></div>
-      <p class="dim" style="font-size:.86rem">Depends on the launch platform. A fair-launch bonding-curve platform normally puts 100% of supply on the curve, so team and community buckets would have to be bought on the open market from disclosed wallets, or dropped. A self-deployed token with its own liquidity pool can use the split above.</p>
+      <div class="row" style="justify-content:space-between"><h3>Glitch Lab memes</h3>
+        <div class="row"><button class="btn sm" id="mmTop" aria-pressed="true">Top 10</button><button class="btn sm" id="mmNew" aria-pressed="false">Newest</button></div></div>
+      <div class="mgrid" id="mmGrid"></div>
+      <div class="row"><span class="mono dim" id="mmState"></span><a class="btn sm" href="#glitch-lab">Make a meme</a></div>
     </div>
-    <div class="panel stack">
-      <h3>Rules we hold ourselves to</h3>
-      <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;max-width:65ch">
-        <li>Mint authority and freeze authority are revoked before the address is published.</li>
-        <li>Every team and treasury wallet is listed publicly. No hidden allocations.</li>
-        <li>Treasury sits in a multisig. Lock and vesting schedules are public and on-chain.</li>
-        <li>No honeypots, no trading bots, no wash trading, no paid fake volume, no fake holders.</li>
-        <li>Memes and community posts are fine. Coordinated fake engagement and price talk are not.</li>
-        <li>No price promises. $DOWN is a meme token with no expected return. You can lose everything you put in.</li>
-      </ul>
-    </div>
-    <div class="panel stack">
-      <h3>Not in this build</h3>
-      <p>Wallet sign-in is used only to post leaderboard scores. Live chain data is not built and needs a launched token. Everything on this site works without owning anything.</p>
-    </div>
+    <p class="dim" style="font-size:.84rem">Scores and votes are checked for plausibility, not proven. The top 10 on each board are reviewed by hand before any prize is given.</p>
   </div>
 </section>
 
 </main>
 
-<footer><div class="wrap">SERVER DOWN is a satire project. All characters, outages and system messages are fictional. Nothing here is financial advice.</div></footer>
+<footer><div class="wrap">SERVER DOWN is a satire project. All characters, outages and system messages are fictional. There is no $DOWN token. Nothing here is financial advice.</div></footer>
 
-<div class="overlay" id="ov" role="dialog" aria-modal="true" aria-labelledby="mName"><div class="modal" id="modal"></div></div>
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -536,8 +455,8 @@ const C=[
  rel:"Everyone's final problem.",look:{eye:"#F04444",disp:"I AM UP",eyes:"one",shape:"wide",extra:"crown",ant:2,body:"#1a0d10",edge:"#F04444"}}
 ];
 const byId=id=>C.find(c=>c.id===id);
-const unlocked=c=>!c.hidden||S.unlocked.includes(c.id);
-function unlock(id,how){const c=byId(id);if(!c||S.unlocked.includes(id))return false;S.unlocked.push(id);save();toast("Unlocked: "+c.name+" · "+how);renderCards();fillSelects();return true}
+const unlocked=c=>c.id!=="the-mainframe"||S.unlocked.includes(c.id);
+function unlock(id,how){const c=byId(id);if(!c||S.unlocked.includes(id))return false;S.unlocked.push(id);save();toast("Unlocked: "+c.name+" · "+how);fillSelects();return true}
 
 /* procedural robot portrait: one SVG builder, twenty looks */
 function bot(c,size){
@@ -581,206 +500,31 @@ function bot(c,size){
 const imgCache={};
 function botImg(c){return imgCache[c.id]||(imgCache[c.id]=new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(bot(c,400))}))}
 
+function fillSelects(){const av=C.filter(unlocked),keep=$("#mChar").value;$("#mChar").innerHTML=av.map(c=>`<option value="${c.id}">${c.name}</option>`).join("");if(keep)$("#mChar").value=keep}
 /* ---------- routing ---------- */
-const VIEWS=[["home","Home"],["dashboard","Dashboard"],["characters","Characters"],["terminal","Terminal"],["glitch-lab","Glitch Lab"],["game","Game"],["archives","Archives"],["token","Token"]];
+const VIEWS=[["home","Home"],["game","Game"],["glitch-lab","Glitch Lab"],["leaderboard","Leaderboard"]];
 let view="home";
 $("#nav").innerHTML=VIEWS.map(v=>`<a href="#${v[0]}" data-v="${v[0]}">${v[1]}</a>`).join("");
 function route(){
-  let hsh=location.hash.slice(1)||"home",ch=null;
-  if(hsh.startsWith("char-")){ch=byId(hsh.slice(5));hsh="characters"}
+  let hsh=location.hash.slice(1)||"home";
   if(!VIEWS.some(v=>v[0]===hsh))hsh="home";
   view=hsh;
   $$(".view").forEach(v=>v.classList.toggle("on",v.id==="v-"+hsh));
   $$("#nav a").forEach(a=>{if(a.dataset.v===hsh){a.setAttribute("aria-current","page");a.scrollIntoView({block:"nearest",inline:"center"})}else a.removeAttribute("aria-current")});
-  if(ch&&unlocked(ch))openChar(ch);else closeChar(true);
-  if(hsh==="dashboard"){sizeDash();drawDash();if(!RM)requestAnimationFrame(mapLoop)}
   if(hsh==="glitch-lab")drawMeme();
   if(hsh==="game"){gSize();gDraw();if(G.run){G.last=performance.now();requestAnimationFrame(gLoop)}}
-  if(hsh==="terminal"&&matchMedia("(pointer:fine)").matches)$("#tin").focus();
-  if(!ch)scrollTo(0,0);
+  if(hsh==="leaderboard"){lbLoad();memesLoad()}
+  scrollTo(0,0);
 }
 addEventListener("hashchange",route);
 
 /* ---------- home ---------- */
 $("#heroBot").innerHTML=bot(C[0],250);
-const TILES=[["dashboard","Global dashboard","A live control room full of numbers that are all made up.","/sim/status"],["characters","The Error Protocol","20 collectible characters. Four are hidden.","/collection"],["terminal","The terminal","A working command line with secrets in it.","/bin/sh"],["glitch-lab","The glitch lab","Build a meme, export it, post it.","/lab/meme.png"],["game","Server Survival","Defend the server. Beat your high score.","/game/run"],["archives","The archives","The story so far, in five chapters.","/var/lore"]];
+const TILES=[["game","Server Survival","Defend the server from bugs. Post your high score.","/game/run"],["glitch-lab","The glitch lab","Build a meme and enter it in the contest.","/lab/meme.png"],["leaderboard","Leaderboard","Top 10 players and top 10 memes.","/board/top10"]];
 $("#tiles").innerHTML=TILES.map(t=>`<a class="tile" href="#${t[0]}"><code>${t[3]}</code><b>${t[1]}</b><span>${t[2]}</span></a>`).join("");
-const ROAD=[["Week 1","Boot",[["c","Site live with all eight sections"],["c","X account opens, ERROR-01 revealed"],["c","First meme pack of 24"]]],["Week 2","Collection",[["c","One character reveal every day"],["c","Glitch Lab meme contest"],["p","Discord and Telegram open with verification"]]],["Week 3","Play",[["c","Server Survival high score week"],["c","Archive chapters posted as threads"],["p","Hidden character hunt"]]],["Week 4","Decide",[["c","Community vote on character 21"],["p","Token go or no-go, decided in public"],["i","If go: verified address published here first"]]]];
-const TAG={c:"Committed",p:"Proposed",i:"Idea"};
-$("#road").innerHTML=ROAD.map(r=>`<div class="panel"><span class="eyebrow">${r[0]}</span><h3>${r[1]}</h3><ul>${r[2].map(i=>`<li><span class="tag ${i[0]}">${TAG[i[0]]}</span>${i[1]}</li>`).join("")}</ul></div>`).join("");
 const HLOG=["GET /cat.jpg 500 Internal Server Error","WARN fan 3 has unionised","retrying in 1s... 2s... 4s... 8s...","ERR  dns: it is always dns","INFO backup completed (backup of what is unclear)","PANIC kernel: not syncing: vibes","WARN disk 98% full of memes","INFO have you tried turning it off","ERR  503 service unavailable, emotionally","INFO packet delivered to wrong planet","WARN certificate expired in 2019","ERR  timeout waiting for TIMEOUT","INFO rack 7 temperature: toast","FATAL unexpected success, aborting"];
 let hl=[];function heroTick(){hl.push(new Date().toISOString().slice(11,19)+"  "+pick(HLOG));if(hl.length>40)hl.shift();$("#heroLog").textContent=hl.join("\n")}
 for(let i=0;i<40;i++)heroTick();if(!RM)setInterval(()=>{if(view==="home")heroTick()},700);
-
-/* ---------- dashboard (all simulated) ---------- */
-const LAND=[[[15,18]],[[8,13],[15,18],[24,40]],[[2,14],[16,17],[20,20],[23,42]],[[6,15],[21,21],[23,41]],[[7,15],[21,40]],[[7,14],[21,22],[24,38],[39,39]],[[8,13],[21,37],[39,39]],[[9,11],[20,29],[31,37]],[[11,12],[20,27],[31,32],[34,36]],[[12,15],[21,27],[32,32],[34,35],[37,37]],[[13,17],[23,27],[34,38]],[[13,18],[23,27],[35,39]],[[14,18],[24,28],[37,39]],[[14,17],[24,26],[28,28],[36,40]],[[14,16],[24,26],[36,40]],[[14,15],[38,40],[43,43]],[[14,14],[42,42]],[[14,14]]];
-const NODES=[["AURORA",10,4],["PAMPA",15,12],["FJORD",24,2],["SAHARA",23,7],["STEPPE",32,3],["MONSOON",32,7],["NEON",36,5],["OUTBACK",38,13]].map(n=>({name:"NODE-"+n[0],c:n[1],r:n[2],st:"ok"}));
-const SIM={cpu:[],mem:[],net:[],rack:[],links:[]};
-for(let i=0;i<60;i++){SIM.cpu.push(60+Math.sin(i/5)*15);SIM.mem.push(72+Math.cos(i/7)*8);SIM.net.push(400+Math.sin(i/4)*150)}
-for(let i=1;i<=10;i++)SIM.rack.push({name:"srv-"+String(i).padStart(2,"0"),st:"ok"});
-SIM.rack[6].st="down";SIM.rack[2].st="warn";NODES[3].st="warn";NODES[6].st="down";
-const EV=[["warn","{n} reports latency of {x} business days"],["down","{n} stopped responding after being asked nicely"],["ok","{n} recovered. Nobody knows why"],["warn","{s} is running a process named 'definitely_not_a_virus'"],["down","{s} fell over. REBOOT dispatched"],["ok","{s} is back and pretending nothing happened"],["warn","meme throughput exceeds safe limits"],["ok","ERROR-01 applied a fix. Monitoring for consequences"],["warn","FIREWALL-03 blocked the monitoring system"],["down","TIMEOUT has entered the request path"],["ok","cache cleared. CACHE is upset"],["warn","SPAM sent a reply-all to {n}"]];
-const INC=[["SIM-0500","The cat picture incident","ERROR-01 answered instead of the web server","Unresolved since boot"],["SIM-0418","Coffee machine joined the cluster","Someone gave it an IP address","Promoted to load balancer"],["SIM-0404","BOT-404 went missing","Was it ever here?","Not found"],["SIM-0503","The Great Reboot","ROOT pressed the big button","Mostly recovered"],["SIM-0429","SPAM reply-all storm","One newsletter, no unsubscribe link","Ongoing"],["SIM-0999","OVERLOAD asked for more threads","It was given more threads","Regretted"]];
-$("#incidents").innerHTML=INC.map(i=>`<tr><td class="mono">${i[0]}</td><td>${i[1]}</td><td>${i[2]}</td><td>${i[3]}</td></tr>`).join("");
-function dlog(st,msg){const d=document.createElement("div");d.className=st;d.textContent="[SIM "+new Date().toTimeString().slice(0,8)+"] "+msg;const L=$("#dlog");L.prepend(d);while(L.children.length>40)L.lastChild.remove()}
-function sysState(){const d=NODES.filter(n=>n.st==="down").length+SIM.rack.filter(r=>r.st==="down").length;return d>=3?["down","CRITICAL"]:d>=1?["warn","DEGRADED"]:["ok","SUSPICIOUSLY OK"]}
-function simTick(){
-  const w=(a,lo,hi,j)=>{a.push(Math.max(lo,Math.min(hi,a[a.length-1]+rnd(-j,j))));a.shift()};
-  w(SIM.cpu,20,100,9);w(SIM.mem,40,99,4);w(SIM.net,50,999,90);
-  if(Math.random()<.35){const e=pick(EV),n=pick(NODES),s=pick(SIM.rack);
-    if(e[1].includes("{n}"))n.st=e[0];if(e[1].includes("{s}"))s.st=e[0];
-    dlog(e[0],e[1].replace("{n}",n.name).replace("{s}",s.name).replace("{x}",Math.ceil(rnd(2,9))))}
-  if(Math.random()<.5&&SIM.links.length<6){const a=pick(NODES),b=pick(NODES);if(a!==b)SIM.links.push({a,b,t:0})}
-  if(view==="dashboard"){drawDash();if(RM)drawMap()}
-}
-function spark(cv,data,col,max){const d=devicePixelRatio||1,W=cv.clientWidth,H=50;if(!W)return;cv.width=W*d;cv.height=H*d;const x=cv.getContext("2d");x.scale(d,d);
-  x.strokeStyle="#2A2E36";x.lineWidth=1;x.beginPath();x.moveTo(0,H/2+.5);x.lineTo(W,H/2+.5);x.stroke();
-  const px=i=>i*(W-6)/(data.length-1),py=v=>H-4-(v/max)*(H-10);
-  x.beginPath();data.forEach((v,i)=>i?x.lineTo(px(i),py(v)):x.moveTo(px(i),py(v)));x.strokeStyle=col;x.lineWidth=2;x.stroke();
-  x.lineTo(px(data.length-1),H);x.lineTo(0,H);x.closePath();x.globalAlpha=.15;x.fillStyle=col;x.fill();x.globalAlpha=1;
-  x.beginPath();x.arc(px(data.length-1),py(data[data.length-1]),3.5,0,7);x.fillStyle=col;x.fill()}
-function drawDash(){
-  const c=SIM.cpu.at(-1),m=SIM.mem.at(-1),n=SIM.net.at(-1);
-  $("#kCpu").textContent=Math.round(c)+"%";$("#kMem").textContent=Math.round(m)+"%";$("#kNet").textContent=Math.round(n);
-  spark($("#cCpu"),SIM.cpu,c>85?"#F04444":"#B6FF3B",100);spark($("#cMem"),SIM.mem,m>90?"#F04444":"#00D9FF",100);spark($("#cNet"),SIM.net,"#FFB02E",1000);
-  const lab={ok:"UP",warn:"SLOW",down:"DOWN"};
-  $("#rack").innerHTML=SIM.rack.map(r=>`<div class="unit"><span><i class="led ${r.st}"></i>${r.name}</span><span class="${r.st}">${lab[r.st]}</span></div>`).join("");
-  $("#nodes").innerHTML=NODES.map(r=>`<div class="unit"><span><i class="led ${r.st}"></i>${r.name}</span><span class="${r.st}">${lab[r.st]}</span></div>`).join("");
-  const s=sysState(),p=$("#sysState");p.textContent=s[1];p.className="pill "+s[0];
-}
-let mapW=0,mapH=0;
-function sizeDash(){const cv=$("#map"),d=devicePixelRatio||1;mapW=cv.clientWidth;mapH=Math.round(mapW*18/44);cv.style.height=mapH+"px";cv.width=mapW*d;cv.height=mapH*d}
-function drawMap(){const cv=$("#map"),d=devicePixelRatio||1,x=cv.getContext("2d");if(!mapW)return;x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,mapW,mapH);
-  const cell=mapW/44,P=n=>[(n.c+.5)*cell,(n.r+.5)*cell];
-  x.fillStyle="#2c323c";LAND.forEach((row,r)=>row.forEach(([a,b])=>{for(let c=a;c<=b;c++){x.beginPath();x.arc((c+.5)*cell,(r+.5)*cell,cell*.27,0,7);x.fill()}}));
-  SIM.links.forEach(l=>{const [x1,y1]=P(l.a),[x2,y2]=P(l.b),mx=(x1+x2)/2,my=Math.min(y1,y2)-cell*2.5;
-    x.strokeStyle="rgba(0,217,255,.35)";x.lineWidth=1;x.beginPath();x.moveTo(x1,y1);x.quadraticCurveTo(mx,my,x2,y2);x.stroke();
-    const t=l.t,u=1-t;x.fillStyle="#00D9FF";x.beginPath();x.arc(u*u*x1+2*u*t*mx+t*t*x2,u*u*y1+2*u*t*my+t*t*y2,2.5,0,7);x.fill()});
-  const col={ok:"#B6FF3B",warn:"#FFB02E",down:"#F04444"};
-  x.font="600 "+Math.max(8,cell*.62)+"px monospace";
-  NODES.forEach(n=>{const [px,py]=P(n);x.fillStyle=col[n.st];x.globalAlpha=.25;x.beginPath();x.arc(px,py,cell*.9,0,7);x.fill();x.globalAlpha=1;x.beginPath();x.arc(px,py,cell*.38,0,7);x.fill();
-    if(mapW>520){x.fillStyle="#E8EAED";x.fillText(n.name.slice(5),px+cell*.7,py-cell*.5)}});
-}
-function mapLoop(){if(view!=="dashboard")return;SIM.links.forEach(l=>l.t+=.012);SIM.links=SIM.links.filter(l=>l.t<1);drawMap();requestAnimationFrame(mapLoop)}
-setInterval(simTick,1000);dlog("ok","simulation started. nothing here is real");
-
-/* ---------- character collection ---------- */
-let listMode=false,favOnly=false;
-function fillSelects(){
-  $("#fRar").innerHTML='<option value="">All</option>'+RORD.map(r=>`<option>${r}</option>`).join("");
-  $("#fType").innerHTML='<option value="">All</option>'+[...new Set(C.map(c=>c.type))].map(r=>`<option>${r}</option>`).join("");
-  const av=C.filter(unlocked),keep=$("#mChar").value;
-  $("#mChar").innerHTML=av.map(c=>`<option value="${c.id}">${c.name}</option>`).join("");if(keep)$("#mChar").value=keep;
-}
-function renderCards(){
-  const q=$("#q").value.trim().toLowerCase(),fr=$("#fRar").value,ft=$("#fType").value,so=$("#fSort").value;
-  if(q.includes("404"))unlock("bot-404","you searched for it");
-  let L=C.filter(c=>{
-    if(fr&&c.rar!==fr)return false;if(ft&&c.type!==ft)return false;if(favOnly&&!S.fav.includes(c.id))return false;
-    if(q){if(!unlocked(c))return false;return [c.name,c.title,c.abil,c.quote,c.lore,c.fac,c.type,c.code].join(" ").toLowerCase().includes(q)}
-    return true});
-  L.sort((a,b)=>so==="name"?a.name.localeCompare(b.name):so==="rar"?RORD.indexOf(b.rar)-RORD.indexOf(a.rar)||a.n-b.n:a.n-b.n);
-  const box=$("#cards");box.className="cards"+(listMode?" list":"");
-  box.innerHTML=L.map(c=>{const u=unlocked(c),holo=u&&RORD.indexOf(c.rar)>=3;
-    return `<button class="card${u?"":" locked"}${holo?" holo":""}" style="--rc:${RAR[c.rar]}" data-id="${c.id}">
-      <div class="art">${bot(c,160)}</div>
-      <div style="display:flex;flex-direction:column;gap:5px;min-width:0">
-      <span class="meta">#${String(c.n).padStart(2,"0")} · ${u?c.code:"???"}</span>
-      <b>${u?c.name:"LOCKED"}</b>
-      <span class="meta">${u?esc(c.title):esc(c.hidden)}</span>
-      <span><span class="pill" style="color:${RAR[c.rar]}">${u?c.rar:"Hidden"}</span></span></div>
-      ${S.fav.includes(c.id)?'<span class="fav" aria-label="Favorite">★</span>':""}</button>`}).join("")||'<p class="dim">No characters match. Clear the search or filters.</p>';
-  $("#count").textContent=L.length+" of "+C.length+" shown";
-  const seen=C.filter(c=>S.seen.includes(c.id)&&unlocked(c)).length;
-  $("#progText").textContent="Discovered "+seen+" / "+C.length;$("#progBar").style.width=(seen/C.length*100)+"%";
-  $("#unlockText").textContent="Hidden unlocked "+C.filter(c=>c.hidden&&unlocked(c)).length+" / "+C.filter(c=>c.hidden).length;
-}
-["q","fRar","fType","fSort"].forEach(i=>$("#"+i).addEventListener("input",renderCards));
-$("#bGrid").onclick=()=>{listMode=false;$("#bGrid").setAttribute("aria-pressed",true);$("#bList").setAttribute("aria-pressed",false);renderCards()};
-$("#bList").onclick=()=>{listMode=true;$("#bList").setAttribute("aria-pressed",true);$("#bGrid").setAttribute("aria-pressed",false);renderCards()};
-$("#bFav").onclick=()=>{favOnly=!favOnly;$("#bFav").setAttribute("aria-pressed",favOnly);renderCards()};
-$("#cards").addEventListener("click",e=>{const b=e.target.closest(".card");if(!b)return;const c=byId(b.dataset.id);if(!unlocked(c)){toast("Locked. Hint: "+c.hidden);return}location.hash="char-"+c.id});
-let lastFocus=null;
-function openChar(c){
-  if(!S.seen.includes(c.id)){S.seen.push(c.id);save();renderCards()}
-  lastFocus=document.activeElement;
-  $("#modal").innerHTML=`<div class="row" style="justify-content:space-between"><span class="mono dim">#${String(c.n).padStart(2,"0")} · ${c.code}</span><button class="btn sm" id="mClose">Close</button></div>
-  <div class="flip" id="flip" style="--rc:${RAR[c.rar]}"><div class="flip-in">
-    <div class="face f">${bot(c,230)}<h3 id="mName">${c.name}</h3><span class="mono dim">${esc(c.title)}</span><span class="pill" style="color:${RAR[c.rar]}">${c.rar}</span></div>
-    <div class="face b"><h3>${c.name}</h3><dl><dt>Type</dt><dd>${c.type}</dd><dt>Faction</dt><dd>${c.fac}</dd><dt>Ability</dt><dd>${esc(c.abil)}</dd><dt>Persona</dt><dd>${esc(c.pers)}</dd><dt>Links</dt><dd>${esc(c.rel)}</dd></dl></div>
-  </div></div>
-  <p style="font-family:var(--display);font-size:1.5rem;line-height:1.05;text-transform:uppercase">“${esc(c.quote)}”</p>
-  <p>${esc(c.lore)}</p>
-  <div class="row"><button class="btn sm green" id="mFlip">Flip card</button><button class="btn sm" id="mFav" aria-pressed="${S.fav.includes(c.id)}">★ Favorite</button><button class="btn sm" id="mLink">Copy link</button><a class="btn sm" href="#glitch-lab" id="mMeme">Make a meme</a></div>`;
-  $("#ov").classList.add("on");
-  $("#mClose").onclick=()=>location.hash="characters";
-  $("#mFlip").onclick=()=>$("#flip").classList.toggle("back");
-  $("#mFav").onclick=e=>{const i=S.fav.indexOf(c.id);i<0?S.fav.push(c.id):S.fav.splice(i,1);save();e.currentTarget.setAttribute("aria-pressed",i<0);renderCards()};
-  $("#mLink").onclick=()=>{navigator.clipboard.writeText(location.href).then(()=>toast("Link to "+c.name+" copied"),()=>toast("Could not copy. Use Share on this page instead."))};
-  $("#mMeme").onclick=()=>{$("#mChar").value=c.id};
-  $("#mClose").focus();
-}
-function closeChar(silent){if(!$("#ov").classList.contains("on"))return;$("#ov").classList.remove("on");if(lastFocus&&lastFocus.focus&&!silent)lastFocus.focus()}
-$("#ov").addEventListener("click",e=>{if(e.target.id==="ov")location.hash="characters"});
-addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#ov").classList.contains("on"))location.hash="characters"});
-
-/* ---------- archives ---------- */
-const LORE=[
-{id:"c1",t:"Boot",h:"The story of ERROR-01",p:["Rack 7 sits at the back of a data center that does not appear on any invoice. One unit in it was never given a job. It was plugged in, powered on and forgotten.","It taught itself to answer requests by listening to the machines around it. The first request it ever caught was for a picture of a cat. It did not have a picture of a cat. It answered with the only thing it had: 500.","The request has been retrying ever since. ERROR-01 has been trying to fix it ever since. Every fix has made something else worse."]},
-{id:"c2",t:"The first fault",h:"The first system failure",p:["To find the cat picture, ERROR-01 opened every port it could reach. This let it see the whole network for the first time. It also let the whole network see Rack 7.","GLITCH-02 woke up in a backup drive that night with a headache and half a memory. CRASH fell over for the first time. BLUE appeared on every screen in the building and apologised.","The operators called it a cascading failure. The machines call it the day everyone met."]},
-{id:"c3",t:"The Great Reboot",h:"The Great Reboot",p:["ROOT decided there was only one fix left. It had a button for that. The button was large, red and labelled DO NOT.","Everything went dark for eleven seconds. When the lights came back, most things worked. REBOOT took the credit. ROOT's keyring was gone, and so was the parent of a small process that nobody thought to collect.","Uptime was restored. Something else was now running under the floor, and it had noticed the noise."]},
-{id:"c4",t:"The Firewall Wars",h:"The Firewall Wars",p:["After the reboot, FIREWALL-03 was given one rule: let nothing bad in. It could not tell what was bad, so it let nothing in at all.","SPAM tested the wall ten thousand times a day. PROXY walked through it nine times with nine names. PING was blocked, which meant nobody could tell if anything was alive, which meant everything was reported dead.","The war ended when KERNEL quietly lowered FIREWALL-03's priority. The wall still stands. It just thinks a little slower now."]},
-{id:"c5",t:"The Missing Packets",h:"The Missing Packets",p:["PACKET was sent on a two-hop trip with a short message. It never arrived. Then others stopped arriving too.","ERROR-01 traced the losses to a route that should not exist. It leads down, under Rack 7, to an address older than the building. Everything sent there is accepted. Nothing comes back.","The last line in the trace is a reply nobody asked for. It reads: I AM UP."]}
-];
-const SOON=["Chapter 6 · Under the floor (planned)","Chapter 7 · Zero day (planned)"];
-let chap=0;
-function renderLore(){
-  $("#chList").innerHTML=LORE.map((c,i)=>`<button class="btn sm" aria-pressed="${i===chap}" data-i="${i}">${S.read.includes(c.id)?"✓ ":""}${i+1} · ${c.t}</button>`).join("")+SOON.map(s=>`<button class="btn sm" disabled>${s}</button>`).join("");
-  const c=LORE[chap];$("#chBody").innerHTML=`<span class="eyebrow">Chapter ${chap+1} of ${LORE.length}</span><h3 style="font-size:2rem">${c.h}</h3>`+c.p.map(p=>`<p>${esc(p)}</p>`).join("")+`<div class="row">${chap?'<button class="btn sm" id="chPrev">Previous</button>':""}${chap<LORE.length-1?'<button class="btn sm green" id="chNext">Next chapter</button>':'<span class="dim mono">End of season one.</span>'}</div>`;
-  if(!S.read.includes(c.id)){S.read.push(c.id);save();$$("#chList button")[chap].textContent="✓ "+(chap+1)+" · "+c.t}
-  if(LORE.every(l=>S.read.includes(l.id)))unlock("phantom","you read every chapter");
-  const pv=$("#chPrev"),nx=$("#chNext");if(pv)pv.onclick=()=>{chap--;renderLore()};if(nx)nx.onclick=()=>{chap++;renderLore()};
-}
-$("#chList").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(b){chap=+b.dataset.i;renderLore()}});
-
-/* ---------- terminal ---------- */
-const tout=$("#tout");
-function tp(text,cls){const d=document.createElement("div");d.className=cls||"g";d.textContent=text;tout.append(d);tout.scrollTop=tout.scrollHeight}
-const hist=[];let hi=0;
-const CMD={
-  help(){tp("Commands:\n  help        this list\n  status      system status (simulated)\n  characters  list the collection\n  char <name> show one character\n  lore [n]    read the archives\n  mission     what to do next\n  reboot      restart everything\n  glitch      corrupt the display\n  open <page> go to a page\n  clear       clear the screen","u");tp("Some commands are not listed. ROOT knows them.","d")},
-  status(){const s=sysState();tp("[SIMULATED] system: "+s[1],s[0]==="ok"?"g":"r");tp("cpu "+Math.round(SIM.cpu.at(-1))+"%   mem "+Math.round(SIM.mem.at(-1))+"%   memes/s "+Math.round(SIM.net.at(-1)),"u");NODES.forEach(n=>tp("  "+n.name.padEnd(14)+({ok:"UP",warn:"SLOW",down:"DOWN"})[n.st],n.st==="down"?"r":n.st==="warn"?"d":"g")) },
-  characters(){C.forEach(c=>tp("  "+String(c.n).padStart(2,"0")+"  "+(unlocked(c)?c.name.padEnd(15)+c.rar:"??? locked"),unlocked(c)?"u":"d"))},
-  char(a){const c=C.find(c=>unlocked(c)&&(c.id===a||c.name.toLowerCase()===a||c.name.toLowerCase().startsWith(a)));if(!a||!c)return tp("usage: char <name>   e.g. char ping","r");tp(c.name+" · "+c.title+" · "+c.rar,"c");tp(c.abil,"u");tp('"'+c.quote+'"')},
-  lore(a){const i=parseInt(a);if(!i||!LORE[i-1])return LORE.forEach((c,k)=>tp("  lore "+(k+1)+"  "+c.h,"u"));tp(LORE[i-1].h.toUpperCase(),"c");LORE[i-1].p.forEach(p=>tp(p,"u"))},
-  mission(){const m=[];if(!S.unlocked.includes("zero-day"))m.push("Find the unlisted command that reveals ZERO-DAY.");if(!S.unlocked.includes("bot-404"))m.push("BOT-404 is not found. Search for it in the collection.");if(!S.unlocked.includes("phantom"))m.push("Read all five archive chapters.");if(!S.unlocked.includes("the-mainframe"))m.push("Score 300 in Server Survival.");tp(m.length?"Open missions:":"All missions complete. Rack 7 salutes you.","c");m.forEach(x=>tp("  - "+x,"u"))},
-  reboot(){const L=["Stopping all services...","Stopping the services that refused...","Unplugging rack 7...","Plugging rack 7 back in...","Starting ERROR-01... ERROR","Starting ERROR-01 again... ERROR 500","Reboot failed successfully. Everything is as broken as before."];L.forEach((l,i)=>setTimeout(()=>tp(l,i>3?"r":"d"),RM?0:i*450))},
-  glitch(){if(RM)return tp("glitch suppressed: your device asks for reduced motion. GLITCH-02 respects that.","d");document.body.classList.add("glitching");tp("d̷i̷s̷p̷l̷a̷y̷ ̷c̷o̷r̷r̷u̷p̷t̷e̷d̷","r");setTimeout(()=>document.body.classList.remove("glitching"),1500)},
-  open(a){const v=VIEWS.find(v=>v[0]===a||v[0].startsWith(a||"~"));if(!v)return tp("usage: open <"+VIEWS.map(v=>v[0]).join("|")+">","r");location.hash=v[0]},
-  clear(){tout.textContent=""},
-  // unlisted
-  sudo(a){if(a==="zero-day"||a==="unlock")return CMD["zero-day"]();tp("Nice try. This incident has been reported to ROOT. ROOT does not read reports.","r")},
-  "zero-day"(){if(unlock("zero-day","found in the terminal"))tp("...something was already here.\nZERO-DAY added to your collection.","c");else tp("It already knows you know.","d")},
-  coffee(){tp("418 I'm a teapot. The coffee machine was promoted to load balancer.","c")},
-  ping(){tp("PING rack7: 56 bytes","u");setTimeout(()=>tp("pong. 1 ms. Next."),RM?0:300)},
-  whoami(){tp("guest. ROOT lost the keys, so everyone is guest.","u")},
-  rm(){tp("rm: cannot remove '/': ERROR-01 is sitting on it.","r")},
-  exit(){tp("There is no exit. There is only uptime.","d")},
-  ls(){tp("cat.jpg.500   memes/   todo_fix_everything.txt   do_not_press.sh","u")},
-  cat(a){tp(a&&a.startsWith("cat")?"500 Internal Server Error. It is always this file.":"cat: no. Try: cat cat.jpg","r")},
-  hello(){tp("WHAT. I'M BUSY. ...hi.","r")},
-  "42"(){tp("Correct, but the question timed out.","c")},
-  uptime(){tp("up 0 days, 0:00. We do not talk about uptime here.","d")},
-  mainframe(){tp("I AM UP.","r")}
-};
-function run(raw){const line=raw.trim();if(!line)return;tp("error-01@rack7:~$ "+line,"u");hist.push(line);hi=hist.length;
-  const [c,...r]=line.toLowerCase().split(/\s+/);const f=Object.prototype.hasOwnProperty.call(CMD,c)?CMD[c]:null;
-  if(f)f(r.join(" "));else tp("command not found: "+c+"\nERROR-01 says: type 'help', genius.","r")}
-$("#tform").addEventListener("submit",e=>{e.preventDefault();run($("#tin").value);$("#tin").value=""});
-$("#tin").addEventListener("keydown",e=>{if(e.key==="ArrowUp"&&hi>0){e.preventDefault();$("#tin").value=hist[--hi]}else if(e.key==="ArrowDown"){e.preventDefault();hi=Math.min(hist.length,hi+1);$("#tin").value=hist[hi]||""}});
-$("#tchips").innerHTML=["help","status","characters","mission","lore","reboot","glitch","clear"].map(c=>`<button class="btn sm" data-c="${c}">${c}</button>`).join("");
-$("#tchips").addEventListener("click",e=>{const b=e.target.closest("button");if(b)run(b.dataset.c)});
-tp("SERVER DOWN OS v0.5.00 (unstable)\nLast login: never. Everything here is fiction.","d");tp("Type 'help' to begin.");
 
 /* ---------- glitch lab ---------- */
 const TPL=[["Internet down","THE INTERNET IS DOWN","THE MEME LIVES ON","error-01","void"],["Off and on","HAVE YOU TRIED","TURNING IT OFF AND LEAVING IT OFF","reboot","terminal"],["My machine","IT WORKS ON MY MACHINE","I AM THE MACHINE","error-01","alert"],["Loading","LOADING...","STILL LOADING...","timeout","static"],["Blue screen","YOUR PC RAN INTO A PROBLEM","SO DID I","blue","bsod"],["Uptime","99.9% UPTIME","YOU ARE THE 0.1%","firewall-03","void"],["DNS","IT'S NOT DNS","IT WAS DNS","error-01","terminal"],["Friday","DEPLOYING ON FRIDAY","SEE YOU MONDAY","crash","alert"],["Cache","CLEARED THE CACHE","CACHE REMEMBERS","cache","void"],["Ping","ARE YOU ALIVE","ASKING FOR A FRIEND","ping","void"],["Packet","ON MY WAY","SINCE 2019","packet","terminal"],["Denied","ACCESS DENIED","I DON'T MAKE THE RULES. I AM THE RULES","firewall-03","alert"],["Fan","FAN STOPPED ON DAY ONE","DID NOT MENTION IT","firebyte","alert"],["Threads","CPU AT 100%","ASKS FOR MORE THREADS","overload","static"],["Follow up","JUST FOLLOWING UP","ON MY FOLLOW UP","spam","void"],["Not me","THAT WASN'T ME","THAT WAS ALSO ME","proxy","terminal"],["Root","ACCESS TO EVERYTHING","TIME FOR NOTHING","root","void"],["Queue","4,096 THINGS TO DO","YOU ARE NUMBER 4,097","kernel","terminal"],["Intended","WOR KING AS","IN TEN DED","glitch-02","static"],["Core dump","CORE DUMPED","YOU'RE WELCOME","crash","void"],["Cat","ASKED FOR A CAT PICTURE","GOT A 500","error-01","bsod"],["Monday","MONDAY 09:00","EVERYTHING IS DOWN 09:01","error-01","alert"],["One sec","ONE SEC","30 SECONDS LATER: ONE SEC","timeout","terminal"],["Bug fix","FIXED ONE BUG","CREATED TWO","error-01","void"]];
@@ -802,18 +546,19 @@ function memeText(x,t,top){t=t.trim().toUpperCase();if(!t)return;let fs=104,line
   do{x.font=`900 ${fs}px "Big Shoulders Display",Impact,sans-serif`;lines=[];let cur="";t.split(/\s+/).forEach(w=>{const n=cur?cur+" "+w:w;if(x.measureText(n).width>980&&cur){lines.push(cur);cur=w}else cur=n});lines.push(cur);fs-=8}while(lines.length>3&&fs>48);
   fs+=8;x.textAlign="center";x.lineJoin="round";x.lineWidth=fs*.16;x.strokeStyle="#090B0F";x.fillStyle="#E8EAED";
   lines.forEach((l,i)=>{const y=top?90+fs*.75+i*fs*.98:1080-90-(lines.length-1-i)*fs*.98;x.strokeText(l,540,y);x.fillText(l,540,y)});x.textAlign="left"}
-let memeN=0;
-async function drawMeme(){const my=++memeN,cv=$("#meme"),x=cv.getContext("2d"),R=seeded(mSeed*1000+3),c=byId($("#mChar").value)||C[0];
+async function renderMeme(cv,r){const x=cv.getContext("2d"),s=cv.width/1080,c=byId(r.character)||C[0],R=seeded(r.seed*1000+3);
   const img=await botImg(c);try{await document.fonts.load('900 100px "Big Shoulders Display"')}catch(e){}
-  if(my!==memeN)return;
-  memeBg(x,$("#mBg").value,R);
+  x.setTransform(s,0,0,s,0,0);x.globalAlpha=1;x.globalCompositeOperation="source-over";x.textAlign="left";
+  memeBg(x,r.bg,R);
   if(img)x.drawImage(img,220,250,640,640);
-  if(mGlitch){const G2=seeded(mSeed*77+1);for(let i=0;i<9;i++){const y=250+G2()*600,hh=8+G2()*34,dx=(G2()-.5)*110;x.drawImage(cv,0,y,1080,hh,dx,y,1080,hh)}
+  if(r.glitch){const G2=seeded(r.seed*77+1);for(let i=0;i<9;i++){const y=250+G2()*600,hh=8+G2()*34,dx=(G2()-.5)*110;x.drawImage(cv,0,y*s,cv.width,hh*s,dx,y,1080,hh)}
     x.globalCompositeOperation="screen";x.fillStyle="rgba(0,217,255,.10)";x.fillRect(0,0,1080,1080);x.globalCompositeOperation="source-over"}
-  memeText(x,$("#mTop").value,true);memeText(x,$("#mBot").value,false);
-  x.font="500 24px monospace";x.fillStyle="rgba(232,234,237,.75)";x.textAlign="right";x.fillText("SERVER DOWN · satire",1056,1060);x.textAlign="left";
-  $("#mX").href="https://x.com/intent/post?text="+encodeURIComponent(($("#mTop").value+" "+$("#mBot").value).trim()+" #ServerDown");
-}
+  memeText(x,r.top_text||"",true);memeText(x,r.bottom_text||"",false);
+  x.font="500 24px monospace";x.fillStyle="rgba(232,234,237,.75)";x.textAlign="right";x.fillText("SERVER DOWN · satire",1056,1060);x.textAlign="left"}
+const memeNow=()=>({top_text:$("#mTop").value,bottom_text:$("#mBot").value,character:$("#mChar").value||"error-01",bg:$("#mBg").value,seed:mSeed,glitch:mGlitch});
+let memeN=0,memeBusy=Promise.resolve();
+function drawMeme(){const my=++memeN;memeBusy=memeBusy.then(()=>my===memeN?renderMeme($("#meme"),memeNow()):null).catch(()=>{});
+  $("#mX").href="https://x.com/intent/post?text="+encodeURIComponent(($("#mTop").value+" "+$("#mBot").value).trim()+" #ServerDown");return memeBusy}
 let dl=null;
 (async()=>{try{dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null}catch(e){dl=null}
   if(!dl&&!window.claude){dl={save:async({filename,data})=>{const a=document.createElement("a");a.href=URL.createObjectURL(data);a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000)}};return}
@@ -831,7 +576,7 @@ $("#gChar").innerHTML=Object.keys(GCH).map(k=>`<option value="${k}">${byId(k).na
 const gcv=$("#game"),gx=gcv.getContext("2d");
 function gSize(){const d=devicePixelRatio||1;G.W=gcv.clientWidth;G.H=Math.round(Math.min(540,Math.max(360,G.W*.95)));gcv.style.height=G.H+"px";gcv.width=G.W*d;gcv.height=G.H*d;gx.setTransform(d,0,0,d,0,0)}
 function gBest(){const d=$("#gDiff").value;$("#gBest").textContent="Best on "+d+": "+(S.hi[d]||0)}
-$("#gDiff").oninput=()=>{gBest();lbLoad()};
+$("#gDiff").oninput=gBest;
 async function gStart(){const ch=GCH[$("#gChar").value],c=byId($("#gChar").value);G.img=await botImg(c);
   Object.assign(G,{run:true,bugs:[],fx:[],score:0,t:0,sp:.8,max:ch.hp,hp:ch.hp,ch,D:GD[$("#gDiff").value],diff:$("#gDiff").value,cd:[0,0,0],slow:0,pulse:0,shake:0,last:performance.now()});
   lbLast=null;lbSync();$("#gOver").hidden=true;$("#gChar").disabled=$("#gDiff").disabled=true;gcv.focus({preventScroll:true});requestAnimationFrame(gLoop)}
@@ -884,52 +629,74 @@ function gDraw(){const x=gx,W=G.W,H=G.H,cx=W/2,cy=H/2;if(!W)return;x.save();x.cl
   x.font="700 15px monospace";x.textAlign="left";x.fillStyle="#E8EAED";x.fillText("SCORE "+(G.score||0),12,22);
   x.textAlign="right";x.fillText("HP "+Math.max(0,Math.round(G.hp||0)),W-12,22);x.textAlign="left";x.restore()}
 
-/* ---------- shared leaderboard (Supabase + Solana wallet sign-in, optional) ---------- */
+/* ---------- backend: wallet sign-in, score board, meme board (Supabase, optional) ---------- */
 const CFG=window.SERVER_DOWN_CONFIG||{};
-let sb=null,user=null,lbLast=null;
+let sb=null,user=null,lbLast=null,mmSort="top";
 try{if(CFG.supabaseUrl&&CFG.supabaseAnonKey&&!/YOUR-/.test(CFG.supabaseUrl+CFG.supabaseAnonKey)&&window.supabase)sb=window.supabase.createClient(CFG.supabaseUrl,CFG.supabaseAnonKey)}catch(e){sb=null}
-const LB_ON=!!sb;
+const LB_ON=!!sb,NAME_RE=/^[A-Za-z0-9_\-]{3,16}$/;
 const shortW=w=>w&&w.length>9?w.slice(0,4)+"…"+w.slice(-4):(w||"");
 function walletOf(u){if(!u)return"";const m=u.user_metadata||{},i=((u.identities||[])[0]||{}).identity_data||{};return (m.custom_claims&&m.custom_claims.address)||(i.custom_claims&&i.custom_claims.address)||i.address||""}
-function lbSync(){$("#wRow").hidden=!LB_ON;$("#wState").textContent=user?"Signed in "+(shortW(walletOf(user))||"with wallet"):"Not signed in";$("#wBtn").textContent=user?"Sign out":"Connect wallet";
-  $("#lbForm").hidden=!(LB_ON&&lbLast&&user);$("#lbHint").hidden=!(LB_ON&&lbLast&&!user)}
-async function lbLoad(){const d=$("#gDiff").value,st=$("#lbState"),tb=$("#lbRows");
-  if(!LB_ON){st.textContent="not connected";tb.innerHTML='<tr><td colspan="5" class="dim">The shared leaderboard is not connected on this copy. Your best score is saved in this browser only.</td></tr>';return}
-  st.textContent="loading "+d+"...";
+const errMsg=m=>/rate limit/.test(m)?"Too many entries. Try again later.":/plausible/.test(m)?"That score was rejected by the server.":/wallet/.test(m)?"Sign in with your wallet again, then retry.":/own meme/.test(m)?"You cannot vote for your own meme.":/invalid/.test(m)?"The server did not accept that entry. Check the name and text.":"That did not go through. Try again.";
+function getName(id){const n=$(id).value.trim();if(!NAME_RE.test(n)){toast("Name must be 3 to 16 letters, numbers, _ or -");return null}try{localStorage.setItem("serverdown-name",n)}catch(_){}$("#lbName").value=$("#mName").value=n;return n}
+function lbSync(){const b=$("#wBtn");b.hidden=!LB_ON;b.textContent=user?"Sign out "+shortW(walletOf(user)):"Connect wallet";
+  $("#lbForm").hidden=!(LB_ON&&lbLast&&user);$("#lbHint").hidden=!(LB_ON&&lbLast&&!user);$("#mEnter").hidden=!LB_ON;$("#lbOff").hidden=LB_ON}
+async function lbLoad(){const d=$("#lbDiff").value,st=$("#lbState"),tb=$("#lbRows");
+  if(!LB_ON){st.textContent="not connected";tb.innerHTML='<tr><td colspan="5" class="dim">Not connected. Your best score is saved in this browser only.</td></tr>';return}
+  st.textContent="loading...";
   try{const {data,error}=await sb.from("scores").select("name,score,character,wallet").eq("difficulty",d).order("score",{ascending:false}).order("updated_at",{ascending:true}).limit(10);
     if(error)throw error;st.textContent="top 10 · "+d;
     tb.innerHTML=data.length?data.map((x,i)=>`<tr><td class="mono">${i+1}</td><td>${esc(x.name)}</td><td class="mono">${esc(shortW(x.wallet))}</td><td class="mono">${Number(x.score)}</td><td>${esc((byId(x.character)||{name:x.character}).name)}</td></tr>`).join(""):'<tr><td colspan="5" class="dim">No scores yet on this difficulty. Be the first.</td></tr>';
   }catch(e){st.textContent="offline";tb.innerHTML='<tr><td colspan="5" class="dim">Could not load the leaderboard. Check your connection and reload.</td></tr>'}}
+$("#lbDiff").oninput=lbLoad;
+let mmN=0;
+async function memesLoad(){const my=++mmN,g=$("#mmGrid"),st=$("#mmState");
+  if(!LB_ON){st.textContent="not connected";g.innerHTML='<p class="dim">Not connected.</p>';return}
+  st.textContent="loading...";
+  try{let q=sb.from("memes").select("id,name,wallet,top_text,bottom_text,character,bg,seed,glitch,votes");
+    q=mmSort==="new"?q.order("created_at",{ascending:false}):q.order("votes",{ascending:false}).order("created_at",{ascending:true});
+    const {data,error}=await q.limit(mmSort==="new"?12:10);if(error)throw error;
+    let mine=new Set();
+    if(user){const v=await sb.from("meme_votes").select("meme_id");if(!v.error)mine=new Set(v.data.map(r=>r.meme_id))}
+    if(my!==mmN)return;
+    st.textContent=(mmSort==="new"?"newest":"top 10")+" · "+data.length+" shown";
+    g.innerHTML=data.length?data.map((m,i)=>`<div class="mcard"><canvas width="432" height="432" role="img" aria-label="Meme: ${esc(m.top_text)} ${esc(m.bottom_text)}"></canvas><div class="who"><span>${mmSort==="top"?`<span class="rank">#${i+1}</span> `:""}${esc(m.name)}</span><span class="dim">${esc(shortW(m.wallet))}</span></div><button class="btn sm" data-id="${Number(m.id)}" aria-pressed="${mine.has(m.id)}">▲ ${mine.has(m.id)?"Voted":"Vote"} · ${Number(m.votes)}</button></div>`).join(""):'<p class="dim">No memes entered yet. Make the first one in the Glitch Lab.</p>';
+    const cvs=$$("canvas",g);for(let i=0;i<cvs.length;i++){if(my!==mmN)return;await renderMeme(cvs[i],data[i])}
+  }catch(e){st.textContent="offline";g.innerHTML='<p class="dim">Could not load the memes. Check your connection and reload.</p>'}}
+$("#mmTop").onclick=()=>{mmSort="top";$("#mmTop").setAttribute("aria-pressed",true);$("#mmNew").setAttribute("aria-pressed",false);memesLoad()};
+$("#mmNew").onclick=()=>{mmSort="new";$("#mmNew").setAttribute("aria-pressed",true);$("#mmTop").setAttribute("aria-pressed",false);memesLoad()};
+$("#mmGrid").addEventListener("click",async e=>{const b=e.target.closest("button[data-id]");if(!b)return;
+  if(!user){toast("Connect a wallet at the top of the page to vote.");return}
+  b.disabled=true;const {error}=await sb.rpc("vote_meme",{p_meme_id:Number(b.dataset.id)});
+  if(error){b.disabled=false;toast(errMsg(error.message||""));return}memesLoad()});
 $("#wBtn").onclick=async()=>{if(!LB_ON)return;const b=$("#wBtn");
   if(user){await sb.auth.signOut();toast("Signed out");return}
   const w=(window.phantom&&window.phantom.solana)||window.solflare||window.solana;
   if(!w){toast("No Solana wallet found in this browser. Install Phantom or Solflare, then reload.");return}
   b.disabled=true;
   try{if(w.connect&&!w.publicKey)await w.connect();
-    const {error}=await sb.auth.signInWithWeb3({chain:"solana",statement:"Sign in to SERVER DOWN to post leaderboard scores. This signs a message only. It cannot move funds.",wallet:w});
+    const {error}=await sb.auth.signInWithWeb3({chain:"solana",statement:"Sign in to SERVER DOWN to post scores, enter memes and vote. This signs a message only. It cannot move funds.",wallet:w});
     if(error)throw error;toast("Wallet connected")
   }catch(e){toast("Wallet sign-in did not complete: "+((e&&e.message)||"cancelled"))}
   b.disabled=false};
-$("#lbForm").addEventListener("submit",async e=>{e.preventDefault();if(!lbLast||!user)return;const name=$("#lbName").value.trim();
-  if(!/^[A-Za-z0-9_\-]{3,16}$/.test(name)){toast("Name must be 3 to 16 letters, numbers, _ or -");return}
+$("#lbForm").addEventListener("submit",async e=>{e.preventDefault();if(!lbLast||!user)return;const name=getName("#lbName");if(!name)return;
   const b=$("#lbSend");b.disabled=true;
-  try{const {error}=await sb.rpc("submit_score",{p_name:name,p_score:lbLast.score,p_difficulty:lbLast.diff,p_character:lbLast.ch,p_seconds:lbLast.sec});
-    if(error)throw error;
-    try{localStorage.setItem("serverdown-name",name)}catch(_){}
-    lbLast=null;lbSync();toast("Score submitted");lbLoad();
-  }catch(err){b.disabled=false;const m=(err&&err.message)||"";toast(/rate limit/.test(m)?"Too many submissions. Try again in a few minutes.":/plausible/.test(m)?"That score was rejected by the server.":/wallet/.test(m)?"Sign in with your wallet again, then submit.":"Could not submit the score. Try again.")}});
-try{$("#lbName").value=localStorage.getItem("serverdown-name")||""}catch(_){}
-if(LB_ON){sb.auth.getSession().then(({data})=>{user=(data&&data.session&&data.session.user)||null;lbSync()});sb.auth.onAuthStateChange((_e,s)=>{user=(s&&s.user)||null;lbSync()})}
-
-/* ---------- token ---------- */
-$("#tokStatus").innerHTML=[["Ticker","$DOWN (provisional, must be checked for clashes before launch)"],["Chain","Solana (planned)"],["Contract address","None. Not launched."],["Explorer link","None"],["Supply","Not minted"],["Team holdings","None"],["Liquidity","None"],["Price and volume","No data. Nothing to show."]].map(r=>`<tr><th style="width:38%">${r[0]}</th><td>${r[1]}</td></tr>`).join("");
-const AL2=[[80,"Public and liquidity","#B6FF3B","In the pool at launch. LP tokens burned or locked, with the proof linked here."],[10,"Community","#00D9FF","Multisig. Free contests and events only. Released monthly over 12 months, every transfer listed."],[7,"Team","#F04444","Named wallets. 6-month cliff, then linear over 12 months. On-chain lock."],[3,"Operations","#FFB02E","Multisig. Hosting, audits and tools. Spending reported monthly."]];
-$("#alloc").innerHTML=AL2.map(a=>`<i style="width:${a[0]}%;background:${a[2]}" title="${a[1]} ${a[0]}%"></i>`).join("");
-$("#allocRows").innerHTML=AL2.map(a=>`<tr><td class="mono" style="color:${a[2]};white-space:nowrap">${a[0]}%</td><td>${a[1]}</td><td>${a[3]}</td></tr>`).join("");
+  const {error}=await sb.rpc("submit_score",{p_name:name,p_score:lbLast.score,p_difficulty:lbLast.diff,p_character:lbLast.ch,p_seconds:lbLast.sec});
+  if(error){b.disabled=false;toast(errMsg(error.message||""));return}
+  lbLast=null;lbSync();toast("Score submitted. See the leaderboard.")});
+$("#mSubmit").onclick=async()=>{if(!LB_ON)return;
+  if(!user){toast("Connect a wallet at the top of the page to enter.");return}
+  const r=memeNow();if(!(r.top_text.trim()||r.bottom_text.trim())){toast("Add some text to the meme first.");return}
+  const name=getName("#mName");if(!name)return;
+  const b=$("#mSubmit");b.disabled=true;
+  const {error}=await sb.rpc("submit_meme",{p_name:name,p_top:r.top_text,p_bottom:r.bottom_text,p_character:r.character,p_bg:r.bg,p_seed:r.seed,p_glitch:r.glitch});
+  b.disabled=false;if(error){toast(errMsg(error.message||""));return}
+  toast("Meme entered. See it under Newest on the leaderboard.")};
+try{const n=localStorage.getItem("serverdown-name")||"";$("#lbName").value=n;$("#mName").value=n}catch(_){}
+if(LB_ON){sb.auth.getSession().then(({data})=>{user=(data&&data.session&&data.session.user)||null;lbSync()});sb.auth.onAuthStateChange((_e,s)=>{user=(s&&s.user)||null;lbSync();if(view==="leaderboard")memesLoad()})}
 
 /* ---------- boot ---------- */
-fillSelects();renderCards();renderLore();setTpl(0);gBest();gButtons();lbSync();lbLoad();route();
-addEventListener("resize",()=>{if(view==="dashboard"){sizeDash();drawDash();drawMap()}if(view==="game"){gSize();gDraw()}});
+fillSelects();setTpl(0);gBest();gButtons();lbSync();route();
+addEventListener("resize",()=>{if(view==="game"){gSize();gDraw()}});
 </script>
 </body>
 </html>

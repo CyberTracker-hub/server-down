@@ -8,9 +8,9 @@ fiction. No real outages, incidents or systems are shown.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The whole site: home, dashboard, 20 characters, terminal, meme lab, game, archives, token page. No build step. |
+| `index.html` | The whole site: home, game, glitch lab (meme maker) and leaderboard. No build step. |
 | `config.js` | Public settings for the shared leaderboard (Supabase URL and anon key). |
-| `supabase/schema.sql` | Database table, access rules and the `submit_score` function. |
+| `supabase/schema.sql` | Database tables, access rules and the functions that accept scores, memes and votes. |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are. |
 
 ## Run it locally
@@ -39,23 +39,30 @@ Never put the `service_role` key in this repo. The site does not need it.
    **Deploy from a branch**, branch `main`, folder `/ (root)`. Save.
 3. After a minute the site is live at `https://<user>.github.io/<repo>/`.
 
-## How the leaderboard works
+## How the two boards work
 
-- To post a score a visitor signs in with a Solana wallet (Phantom or Solflare).
-  The wallet signs a text message. No transaction is sent and no funds can move.
-- Supabase Auth verifies the signature. The wallet address stored with a score is
-  read from that verified sign-in, never from the browser.
-- One row per wallet and difficulty: a new score only replaces a lower one.
-- Visitors can read `name, wallet, score, difficulty, character, updated_at` and
-  nothing else. They cannot insert, update or delete rows directly.
-- `submit_score` checks the name format and rejects scores that are not possible
-  in the time played. Each wallet is limited to 10 submissions per 10 minutes.
+- The site has four pages: Home, Game, Glitch Lab and Leaderboard.
+- To post a score, enter a meme or vote, a visitor signs in with a Solana wallet
+  (Phantom or Solflare). The wallet signs a text message. No transaction is sent
+  and no funds can move. Supabase Auth verifies the signature, and the wallet
+  address is read from that verified sign-in, never from the browser.
+- Score board: one row per wallet and difficulty. A new score only replaces a
+  lower one. Scores that are not possible in the time played are rejected.
+- Meme board: a meme is stored as its recipe (texts, character, background,
+  seed), not as an image, so nobody can upload an arbitrary picture. Up to 5
+  entries per wallet per day. One vote per wallet per meme, no votes on your own
+  meme, and voting again removes the vote.
+- Visitors can only read the boards. All writes go through `submit_score`,
+  `submit_meme` and `vote_meme`.
+- Moderation: open the `memes` table in the Supabase table editor and set
+  `hidden` to true to take a meme off the board. Delete rows in `scores` to
+  remove a score.
 
 ## Before you offer prizes
 
 - The game runs in the browser. A determined person can send a made-up score
   that passes the checks. Wallets are free to create, so one person can also
-  hold several places.
+  hold several places or vote many times.
 - Do not pay out automatically from the board. Review the top scores by hand,
   state in the rules that suspicious scores are removed, and remove rows in the
   Supabase table editor.
@@ -65,5 +72,4 @@ Never put the `service_role` key in this repo. The site does not need it.
 
 ## Not included
 
-Wallet connect, token data and user accounts are not built. There is no $DOWN
-token. See the Token page on the site.
+Token data is not built. There is no $DOWN token.
